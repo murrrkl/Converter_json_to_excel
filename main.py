@@ -5,7 +5,9 @@ import openpyxl
 from openpyxl.styles import Font
 from openpyxl import Workbook
 
-os.remove('FinalTable.xlsx')
+if os.path.isfile('FinalTable.xlsx'):
+    os.remove('FinalTable.xlsx')
+
 my_file = open("FinalTable.xlsx", "w+")
 my_file.close()
 
@@ -71,7 +73,8 @@ for i in range(2, df_len + 2):
                     open_brackets += 1
                     j += 8
                     while cell_obj[j] != ",":
-                        time += cell_obj[j]
+                        if cell_obj != "'":
+                            time += cell_obj[j]
                         j += 1
 
                     j += 12
